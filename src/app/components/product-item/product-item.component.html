@@ -1,33 +1,32 @@
+<div >
+  <div>
+  <div class="card h-100" *ngIf="data">
+      <!-- Product image-->
+      <img class="card-img-top" src="{{data.image}}" height="32%" alt="..." />
+      <!-- Product details-->
+      <div class="card-body p-4">
+          <div class="text-center">
+              <!-- Product name-->
+              <h5 class="fw-bolder">{{data.name}}</h5>
+              <!-- Product price-->
+              <mark>{{data.price}} $</mark>
 
-<div class="row mt-5 justify-content-center">
-<div class="card mb-4" style="max-width: 650px; border: none;" *ngFor="let item of products">
-  <div class="row g-0">
-    <div class="col-md-4" >
-      <img src={{item.image}} class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-7 mt-1" style="margin-left: 30px;" >
-      <div class="card-body">
-        <h5 class="card-title">{{item.name}}</h5>
-        <p class="h6">{{item.price|currency}}</p>
-        <p class="card-text">{{item.description}}</p>
-        <div>
-          <select class="form-control " style="width: 110px;">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-        </div>
-        <div class="mt-2" ><a class="btn btn-primary mt-auto"  routerLink="/product/{{item.id}}" >Add to cart</a></div>
-        <button class="btn btn-secondary mb-3 mt-2" (click)="back()">back to list</button>
+              <hr>
+
+              <div >
+                <select class="form-control " style="width: 110px;
+                margin:0 auto;" [(ngModel)]="data.amount">
+                 <option *ngFor="let itemAmmount of Ammount" value={{itemAmmount}}>{{itemAmmount}}</option>
+                </select>
+              </div>
+          </div>
       </div>
+      <!-- Product actions-->
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+          <div class="text-center"><a class="btn btn-outline-dark mt-auto"  routerLink="/product/{{data.id}}" >View Product</a></div>
+      </div>
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center"><button class="btn btn-primary mt-auto"  (click)="add()" >Add to cart</button></div>
     </div>
   </div>
-</div>
 </div>

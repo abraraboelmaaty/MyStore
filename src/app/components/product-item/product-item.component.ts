@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Product} from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
@@ -10,36 +10,19 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class ProductItemComponent implements OnInit {
 
-  proId :number = 0;
-  products: Product[] | undefined;
+  @Input() data:any = {}
+  @Output() item = new EventEmitter();
+  Ammount:number[] = [1,2,3,4,5,6,7,8,9,10]
   constructor(
     private productService:ProductService,
     private route:ActivatedRoute,
     private router:Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(
-      (params:ParamMap)=>{
-        this.proId =  Number(params.get('id'));
-      })
-      if (this.proId != 0) {
-        this.productService.getProduct(this.proId).subscribe({
-          next: (res) => {
-            console.log(res);
-            this.products = res;
-          },
-          error: (err) => {
-            console.log(err);
-          },
-          complete: () => {
-            console.log('get one');
-          },
-        });
-      }
-    }
-    back(){
-      this.router.navigate(['/products']);
-    }
+
+  }
+  add(){
+    this.item.emit(this.data)
   }
 
-
+}

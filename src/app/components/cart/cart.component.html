@@ -1,1 +1,59 @@
-<p>cart works!</p>
+<div class="container">
+  <div class="row g-0 border border-2 border-secondary rounded mt-5">
+    <div class="col-md-6 col col-sm-12 m-3" *ngIf="products">
+      <div class="row mt-5 " >
+        <div class="card mb-4" style="border: none; max-height: 200px;" *ngFor="let item of products">
+          <div class="row g-0">
+            <div class="col-md-4" >
+              <img src={{item.image}} class="img-fluid rounded-start" style="height: 60%;" alt="...">
+            </div>
+            <div class="col-md-7 mt-1" style="margin-left: 30px;" >
+              <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="h6">{{item.price|currency}}</p>
+                Ammount:<input type="number" style="width: 20%;" class="rounded" [(ngModel)]="item.amount">
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4 col-sm-12 m-2">
+      <form method="post" #userForm = "ngForm" novalidate (ngSubmit)="onSubmit()"  style="background-color:transparent ;" >
+        <div class="my-5">
+        <input  minlength="3" type="text" name="Name" placeholder = "Name" class="form-control"
+        required [(ngModel)]="user.name" #registerName="ngModel"
+         [class.is-invalid] = "registerName.invalid && registerName.touched">
+         <div *ngIf="registerName.errors && (registerName.invalid || registerName.touched)">
+           <small class="text-danger" *ngIf="registerName.errors['required'] && registerName.touched">FuuName is required</small>
+           <small class="text-danger" *ngIf="registerName.errors['minlength']&& registerName.touched">FuuName must be at lest 3 chars</small>
+        </div>
+      </div>
+      <div class="my-5">
+        <input type="text"  name="Address" placeholder = "Address" class="form-control"
+        required [(ngModel)]="user.address" #registerAddress="ngModel" minlength="6"
+         [class.is-invalid] = "registerAddress.invalid && registerAddress.touched">
+         <div *ngIf="registerAddress.errors && (registerAddress.invalid || registerAddress.touched)">
+           <small class="text-danger" *ngIf="registerAddress.errors['required'] && registerAddress.touched">Address is required</small>
+           <small class="text-danger" *ngIf="registerAddress.errors['minlength']&& registerAddress.touched">Address must be at lest 6 chars</small>
+         </div>
+        </div>
+         <input type="text" name="UseName" placeholder = "credit card number" class="form-control"
+         required [(ngModel)]="user.credit" #registercredit="ngModel" minlength="16"
+         [class.is-invalid] = "registercredit.invalid && registercredit.touched">
+         <div *ngIf="registercredit.errors && (registercredit.invalid || registercredit.touched)">
+           <small class="text-danger" *ngIf="registercredit.errors['required'] && registercredit.touched">credit card number is required</small>
+           <small class="text-danger" *ngIf="registercredit.errors['minlength']&& registercredit.touched">credit card number must be at lest 16 chars</small>
+         </div>
+         <div class="form-group mt-5">
+          <input type="submit" value="Submit"  class="btn btn-primary btn-lg" [disabled]="userForm.form.invalid">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
