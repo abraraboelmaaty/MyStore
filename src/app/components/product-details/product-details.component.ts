@@ -13,6 +13,8 @@ export class ProductDetailsComponent implements OnInit {
   proId :number = 0;
   products: Product[] | undefined;
   cartProducts:any[] = [];
+  cartValue:number = 0;
+  Ammount:number[] = [1,2,3,4,5,6,7,8,9,10];
   constructor(
     private productService:ProductService,
     private route:ActivatedRoute,
@@ -51,11 +53,23 @@ export class ProductDetailsComponent implements OnInit {
         }else{
           this.cartProducts.push(item);
           localStorage.setItem("cart",  JSON.stringify(this.cartProducts));
+          alert("item added to cart");
         }
 
       }else{
         this.cartProducts.push(item);
         localStorage.setItem("cart",  JSON.stringify(this.cartProducts));
+        alert("item added to cart");
+      }
+      if("cartValue" in localStorage){
+        this.cartProducts = JSON.parse(localStorage.getItem("cartValue")!);
+        this.cartValue++;
+        localStorage.setItem("cartValue",  JSON.stringify(this.cartValue));
+        }
+
+      else{
+        this.cartValue+=1;
+        localStorage.setItem("cartValue",JSON.stringify(this.cartValue))
       }
     }
 }

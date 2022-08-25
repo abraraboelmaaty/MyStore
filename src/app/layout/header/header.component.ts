@@ -12,7 +12,10 @@ export class HeaderComponent implements OnInit {
   constructor(private cartService:CartService) { }
 
   ngOnInit(): void {
-    this.cartItem = this.cartService.cartItem;
+    if(this.cartItem==null)
+      this.cartItem = 0;
+    console.log(JSON.parse(localStorage.getItem("cartValue")!))
+    this.cartItem = JSON.parse(localStorage.getItem("cartValue")!);
   }
 
 }

@@ -10,19 +10,10 @@
           <h5 class="card-title">{{item.name}}</h5>
           <p class="h6">{{item.price|currency}}</p>
           <p class="card-text">{{item.description}}</p>
-          <div>
+          <div >
             <select class="form-control " style="width: 110px;" [(ngModel)]="item.amount">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
+             <option *ngFor="let itemAmmount of Ammount" value={{itemAmmount}}>{{itemAmmount}}</option>
+            </select>
           </div>
           <div class="mt-2" ><button class="btn btn-primary mt-auto"  (click)="addToCart(item)" >Add to cart</button></div>
           <button class="btn btn-secondary mb-3 mt-2" (click)="back()">back to list</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmationComponent implements OnInit {
 
-  constructor() { }
+  name:string|null = "";
+  total:string|null= "";
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
-
+    this.name = this.route.snapshot.queryParamMap.get('name');
+    this.total = this.route.snapshot.queryParamMap.get('totalprice');
+}
 }
