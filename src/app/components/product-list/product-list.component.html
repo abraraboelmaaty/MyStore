@@ -1,0 +1,46 @@
+<div class="container px-4 px-lg-5 mt-5">
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+      <div class="col mb-5" *ngFor="let item of products">
+        <div >
+          <div class="card h-100" *ngIf="item">
+              <!-- Product image-->
+              <img class="card-img-top" src="{{item.image}}" height="32%" alt="..." />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                  <div class="text-center">
+                      <!-- Product name-->
+                      <h5 class="fw-bolder">{{item.name}}</h5>
+                      <!-- Product price-->
+                      <mark>{{item.price}} $</mark>
+
+                      <hr>
+                      <div >
+                        <select class="form-control " style="width: 110px;
+                        margin-left: 55px;">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                        </select>
+                      </div>
+                  </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center"><a class="btn btn-outline-dark mt-auto"  routerLink="/product/{{item.id}}" >View Product</a></div>
+              </div>
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center"><a class="btn btn-primary mt-auto"  routerLink="/product/{{item.id}}" >Add to cart</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

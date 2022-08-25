@@ -1,0 +1,21 @@
+.active-link{
+  color:burlywood
+}
+.cart-icon{
+  position: relative;
+}
+.cart-icon #cart{
+  font-size: 30px;
+}
+.cart-value{
+  position: absolute;
+  top: -5px;
+  right: -19px;
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 2px 8px;
+  color:red;
+  font-size: 15px;
+  font-weight: bold;
+}
+

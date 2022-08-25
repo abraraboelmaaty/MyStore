@@ -1,0 +1,33 @@
+
+<div class="row mt-5 justify-content-center">
+<div class="card mb-4" style="max-width: 650px; border: none;" *ngFor="let item of products">
+  <div class="row g-0">
+    <div class="col-md-4" >
+      <img src={{item.image}} class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-7 mt-1" style="margin-left: 30px;" >
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="h6">{{item.price|currency}}</p>
+        <p class="card-text">{{item.description}}</p>
+        <div>
+          <select class="form-control " style="width: 110px;">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+        </div>
+        <div class="mt-2" ><a class="btn btn-primary mt-auto"  routerLink="/product/{{item.id}}" >Add to cart</a></div>
+        <button class="btn btn-secondary mb-3 mt-2" (click)="back()">back to list</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
