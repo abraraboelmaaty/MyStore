@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCartProducts();
     this.getCartTotalPrice();
+
   }
 
   getAllCartProducts(){
@@ -39,5 +40,20 @@ export class CartComponent implements OnInit {
 
 
     }
+  }
+
+  detectChange(){
+    this.getCartTotalPrice();
+    localStorage.setItem("cart",  JSON.stringify(this.products));
+  }
+  delete(index:number){
+    this.products.splice(index,1);
+    this.getCartTotalPrice();
+    localStorage.setItem("cart",  JSON.stringify(this.products));
+  }
+  clear(){
+    this.products = [];
+    this.getCartTotalPrice();
+    localStorage.setItem("cart",  JSON.stringify(this.products));
   }
 }

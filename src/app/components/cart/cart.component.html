@@ -2,8 +2,11 @@
   <div class="row g-0 border border-2 border-secondary rounded mt-5">
     <div class="col-md-6 col col-sm-12 m-3" *ngIf="products">
       <div class="row mt-5 " >
-        <div class="card mb-4" style="border: none; max-height: 200px;" *ngFor="let item of products">
+        <span class="btn btn-danger mb-2 text-center m-auto" style="width: 20%;" (click)="clear()">clear</span>
+        <div class="card mb-4" style="border: none; max-height: 200px;" *ngFor="let item of products;let index = index">
+
           <div class="row g-0">
+
             <div class="col-md-4" >
               <img src={{item.image}} class="img-fluid rounded-start" style="height: 60%;" alt="...">
             </div>
@@ -11,7 +14,8 @@
               <div class="card-body">
                 <h5 class="card-title">{{item.name}}</h5>
                 <p class="h6">{{item.price|currency}}</p>
-                Ammount: <input type="number" style="width: 20%;" class="rounded" [(ngModel)]="item.amount">
+                Ammount: <input type="number"  style="width: 20%;" class="rounded" [(ngModel)]="item.amount" (ngModelChange)="detectChange()"><br>
+                <button class="btn btn-danger" (click)="delete(index)">delete</button>
               </div>
 
             </div>
