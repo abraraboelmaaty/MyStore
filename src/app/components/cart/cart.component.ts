@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-cart',
@@ -42,18 +44,46 @@ export class CartComponent implements OnInit {
     }
   }
 
+
   detectChange(){
     this.getCartTotalPrice();
     localStorage.setItem("cart",  JSON.stringify(this.products));
   }
   delete(index:number){
-    this.products.splice(index,1);
-    this.getCartTotalPrice();
-    localStorage.setItem("cart",  JSON.stringify(this.products));
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this deleted item!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it!',
+    }).then((result) => {
+      if (result.value) {
+        this.products.splice(index,1);
+        this.getCartTotalPrice();
+        localStorage.setItem("cart",  JSON.stringify(this.products));
+      }
+      this.router.navigate(['/cart']);
+    });
+
   }
   clear(){
-    this.products = [];
-    this.getCartTotalPrice();
-    localStorage.setItem("cart",  JSON.stringify(this.products));
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this deleted item!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it!',
+    }).then((result) => {
+      if (result.value) {
+        this.products = [];
+        this.getCartTotalPrice();
+        localStorage.setItem("cart",  JSON.stringify(this.products));
+      }
+      this.router.navigate(['/cart']);
+    });
+
   }
 }

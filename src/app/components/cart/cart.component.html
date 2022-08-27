@@ -48,7 +48,7 @@
            <small class="text-danger" *ngIf="registerAddress.errors['minlength']&& registerAddress.touched">Address must be at lest 6 chars</small>
          </div>
         </div>
-         <input type="text" name="UseName" placeholder = "credit card number" class="form-control"
+         <input type="number" name="UseName" placeholder = "credit card number" class="form-control"
          required [(ngModel)]="user.credit" #registercredit="ngModel" minlength="16"
          [class.is-invalid] = "registercredit.invalid && registercredit.touched">
          <div *ngIf="registercredit.errors && (registercredit.invalid || registercredit.touched)">
